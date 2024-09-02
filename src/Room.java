@@ -1,24 +1,24 @@
 public class Room {
 //    private int id;
-    private String roomName;
+    private int roomNumber;
     private int capacity;
     private boolean availability;
-    public Room(String roomName, int capacity, boolean availability) {
-        this.roomName = roomName;
+    public Room(int roomNumber, int capacity, boolean availability) {
+        this.roomNumber = roomNumber;
         this.capacity = capacity;
         this.availability = availability;
     }
 
-    public String getRoomName() {
-        return this.roomName;
+    public int getRoomNumber() {
+        return this.roomNumber;
     }
 
     public int getCapacity(){
         return this.capacity;
     }
 
-    public void setRoomName(String roomName){
-        this.roomName = roomName;
+    public void setRoomNumber(int roomName){
+        this.roomNumber = roomName;
     }
 
     public void setCapacity(int capacity){

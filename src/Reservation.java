@@ -1,19 +1,24 @@
+import java.time.LocalDate;
 import java.util.Date;
 
-public class Reservation extends Room {
-//    private int id;
+public class Reservation  {
+    private int id;
     private Room room;
     private String client;
-    private Date check_in_date;
-    private Date check_out_date;
+    private LocalDate check_in_date;
+    private LocalDate check_out_date;
 
-    public Reservation(String roomName, int capacity, boolean available, Room room, String client, Date check_in_date, Date check_out_date) {
-        super(roomName, capacity, available);
+    public Reservation(int id ,Room room, String client, LocalDate check_in_date, LocalDate check_out_date) {
+        if (check_in_date.isAfter(check_out_date)) {
+            System.out.println("Invalid date Try again !");
+        }
+        this.id = id;
         this.room = room;
         this.client = client;
         this.check_in_date = check_in_date;
         this.check_out_date = check_out_date;
     }
+
 
     public Room getRoom() {
         return room;
@@ -23,19 +28,19 @@ public class Reservation extends Room {
         this.room = room;
     }
 
-    public Date getCheck_out_date() {
+    public LocalDate getCheck_out_date() {
         return check_out_date;
     }
 
-    public void setCheck_out_date(Date check_out_date) {
+    public void setCheck_out_date(LocalDate check_out_date) {
         this.check_out_date = check_out_date;
     }
 
-    public Date getCheck_in_date() {
+    public LocalDate getCheck_in_date() {
         return check_in_date;
     }
 
-    public void setCheck_in_date(Date check_in_date) {
+    public void setCheck_in_date(LocalDate check_in_date) {
         this.check_in_date = check_in_date;
     }
 
@@ -45,5 +50,19 @@ public class Reservation extends Room {
 
     public void setClient(String client) {
         this.client = client;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "\n= Reservation ID :" + id +
+                ", Room Info :" + room +
+                ", Client :" + client +
+                ", Check In :" + check_in_date +
+                ", Check Out :" + check_out_date  + "]";
     }
 }
