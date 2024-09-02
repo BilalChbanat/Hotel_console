@@ -39,7 +39,7 @@ public class Main {
             switch (input) {
                 case 1:
                     System.out.println(" \n");
-                    System.out.println(reservations);
+//                    System.out.println(reservations);
 
                     for (Room room : rooms) {
                         if (room.getAvailability()){
@@ -107,10 +107,61 @@ public class Main {
                     System.out.println("Reservation made successfully for " + clientName + " in Room " + roomNumber);
                     break;
                 case 3:
-                    System.out.println("update reservation");
+                    System.out.print("Enter the reservation ID to update: ");
+                    int reservationId = sc.nextInt();
+                    boolean found = false;
+
+                    for (Reservation reservation : reservations) {
+                        if (reservation.getId() == reservationId) {
+                            found = true;
+
+                            // Update client name
+                            System.out.print("Enter new client name: ");
+                            String newClientName = sc.next();
+                            reservation.setClient(newClientName);
+
+                            // Update check-in date
+                            System.out.print("Enter new check-in date (YYYY-MM-DD): ");
+                            LocalDate newCheckInDate = null;
+                            try {
+                                newCheckInDate = LocalDate.parse(sc.next());
+                            } catch (DateTimeParseException e) {
+                                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                                break;
+                            }
+
+                            // Update check-out date
+                            System.out.print("Enter new check-out date (YYYY-MM-DD): ");
+                            LocalDate newCheckOutDate = null;
+                            try {
+                                newCheckOutDate = LocalDate.parse(sc.next());
+                            } catch (DateTimeParseException e) {
+                                System.out.println("Invalid date format. Please enter the date in YYYY-MM-DD format.");
+                                break;
+                            }
+
+                            if (newCheckInDate.isAfter(newCheckOutDate)) {
+                                System.out.println("Check-out date cannot be before check-in date.");
+                                break;
+                            }
+
+                            reservation.setCheck_in_date(newCheckInDate);
+                            reservation.setCheck_out_date(newCheckOutDate);
+
+                            // Room update is not included as it may complicate the logic and require further checks.
+                            System.out.println("Reservation updated successfully.");
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Reservation with ID " + reservationId + " not found.");
+                    }
+
                     break;
+
                 case 4:
-                    System.out.println("remove a reservation");
+                    System.out.println("cancle a reservation");
                     break;
 
                 case 5:

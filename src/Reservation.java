@@ -59,7 +59,7 @@ public class Reservation  {
     @Override
     public String toString() {
         return
-                "\n= Reservation ID :" + id +
+                "\n[ Reservation ID :" + id +
                 ", Room Info :" + room +
                 ", Client :" + client +
                 ", Check In :" + check_in_date +
