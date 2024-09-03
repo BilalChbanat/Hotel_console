@@ -161,8 +161,32 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println("cancle a reservation");
+                    System.out.print("Enter the reservation ID to cancel: ");
+                    int cancelReservationId = sc.nextInt();
+                    boolean reservationFound = false;
+
+                    for (Reservation reservation : reservations) {
+                        if (reservation.getId() == cancelReservationId) {
+                            reservationFound = true;
+
+                            // Mark the room as available again
+                            Room reservedRoom = reservation.getRoom();
+                            reservedRoom.setAvailability(true);
+
+                            // Remove the reservation from the list
+                            reservations.remove(reservation);
+
+                            System.out.println("Reservation with ID " + cancelReservationId + " has been successfully canceled.");
+                            break;
+                        }
+                    }
+
+                    if (!reservationFound) {
+                        System.out.println("Reservation with ID " + cancelReservationId + " not found.");
+                    }
+
                     break;
+
 
                 case 5:
                     System.out.println("Goodbye!");
